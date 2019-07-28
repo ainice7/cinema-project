@@ -1,0 +1,13 @@
+img {
+    width: 23vw;
+    /* min-height: 100%; */
+}
+
+.movie-list {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* .movie-list>div {
+    
+} */
