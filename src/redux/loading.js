@@ -9,9 +9,9 @@ export const loading = (state = initialState, action ) => {
         case IS_LOADING:
             return {
                 ...state,
-                isLoading: true
+                isLoading: action.isLoading
             };
-        case IS_LOADING:
+        case LOADING_FAIL:
         case SET_MOVIES:
             return {
                 ...state,

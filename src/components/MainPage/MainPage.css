@@ -1,13 +1,134 @@
+@import url('https://fonts.googleapis.com/css?family=Russo+One&display=swap&subset=cyrillic');
+@font-face {
+    font-family: "Star Wars";
+    src: url(../../assets/fonts/starwars/STARWARS.ttf);
+}
+
 img {
-    width: 23vw;
-    /* min-height: 100%; */
+    width: 20vw;
+    height: 100%;
+    transition: all .5s ease;
+}
+
+.movie-top {
+    margin: 20px auto;
+    position: relative;
+}
+
+.movie-top>h1 {
+    font-family: "Star Wars";
+    text-decoration: underline;
+    margin-bottom: 0px;
+}
+
+.filter {
+    position: absolute;
+    top: 0;
+    right:2%;
+}
+
+.filter>h3 {
+    display: inline;
+}
+
+.filter>span {
+    color: black;
+    margin: 0 10px;
+}
+
+.ant-select {
+    width: 150px;
+}
+
+.ant-select-selection {
+    border: 1px solid #999;
+}
+
+.ant-select-selection:hover {
+    border-color: #6BE044;
+}
+
+.ant-select-open .ant-select-selection {
+    box-shadow: 0 0 0 1px #6BE044;
+}
+
+.ant-select-foused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active {
+    border-color: #6BE044;
+}
+
+.filter>input {
+    padding: 5px;
+    border: 1px solid #999;
+    border-radius: 3px;
+    box-shadow: 0 0 1px 1px rgba(0,0,0,0);
+    transition: .17s linear;
+}
+
+.filter>input:focus, .filter>input:hover {
+    outline: none;
+    border-color: #cc0000;
+    /* box-shadow: 0 0 2px 2px #cc0000; */
 }
 
 .movie-list {
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 10px auto;
+    justify-content: space-between;
 }
 
-/* .movie-list>div {
-    
-} */
+.jc-fs {
+    justify-content: flex-start;
+}
+
+.movie-preview {
+    position: relative;
+    z-index: 0;
+    width: 20vw;
+    margin: 10px 2vw;
+    border: 5px solid grey;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 65vh;
+
+}
+
+.movie-preview:hover {
+    border: 5px solid #cc0000;
+}
+
+.movie-preview:hover>img {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.movie-tittle  {
+    font-family: 'Russo One', sans-serif;
+    position: absolute;
+    z-index: 1;
+    top: 75%;
+    left: 20px;
+    right: 20px;
+    font-size: 25px;
+    color: #fff;
+}
+
+.movie-tittle:hover {
+    color: tomato;
+}
+
+.movie-tittle>span {
+    text-align: center;
+    vertical-align: top;
+}
+
+.blackout {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 54%,rgba(0,0,0,1) 100%);
+}
