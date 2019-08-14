@@ -3,19 +3,16 @@ import { connect }  from 'react-redux';
 
 import './Movie.css';
 import Fail from '../Common/Fail';
+import { dateOptions } from '../../constance';
 
 class Movie extends Component {
     state = {
         movie: {}
     }
 
-    // componentDidMount() {
-    //     console.log('did movie' ,this.props);
-    // }
-
     componentDidMount() {
         const { match, movies } = this.props;
-        
+        console.log("props", this.props)
         const movieId = match.params.id;
         const movie = movies.find(el => el._id === movieId );
 
@@ -28,12 +25,13 @@ class Movie extends Component {
     render() {
         console.log('movies done', this.state);
         const { movie } = this.state;
-        const actors = movie.actors ? this.tailCut(movie.actors) : '';
-        const country = movie.country ? this.tailCut(movie.country) : '';
-        const genre = movie.genre ? this.tailCut(movie.genre) : '';
         if (!movie) {
             return <Fail />
         }
+        const actors = movie.actors ? this.tailCut(movie.actors) : '';
+        const country = movie.country ? this.tailCut(movie.country) : '';
+        const genre = movie.genre ? this.tailCut(movie.genre) : '';
+        
         
         return <div className="movie-page">
             <h1>{movie.title}</h1>
@@ -49,7 +47,7 @@ class Movie extends Component {
                     </div>
                     <div>
                         <div>Период: </div>
-                        <div>{movie.rentStart}-{this.state.movie.rentEnd}</div>
+                        <div>{new Date(movie.rentStart).toLocaleString("ru", dateOptions)} - {new Date(this.state.movie.rentEnd).toLocaleString("ru", dateOptions)}</div>
                     </div>
                     <div>
                         <div>Язык: </div>

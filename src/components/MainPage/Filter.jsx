@@ -10,29 +10,29 @@ export const Filter = ({ movies, setFilteredMovies, genres }) => {
 
     const getFilteredMovies = (valueInput, valueSelect) => {
         return movies.reduce((acc, item) => {
-            if(valueInput && 
-            valueSelect &&
-            item.genre && item.genre.length
+            const hasAllFilters = valueInput && valueSelect;
+            const checkSelectFilter = item.genre && item.genre.length && 
+                item.genre.some(elem => elem.trim() === valueSelect);
+            const checkTitleFilter = item.title.toLowerCase().includes(valueInput.toLowerCase());
+
+        if(hasAllFilters && checkSelectFilter && checkTitleFilter
         ) {
-            if(
-                item.genre.some(elem => elem.trim() === valueSelect) &&
-                item.title.toLowerCase().includes(valueInput.toLowerCase())
-            ) {
-                acc.push(item);
-            }
+            acc.push(item);
         } else if(
             valueInput &&
             !valueSelect &&
-            item.title.toLowerCase().includes(valueInput.toLowerCase()) 
+            checkTitleFilter 
         ) {
             acc.push(item);
         } else if(
             !valueInput &&
             valueSelect &&
-            item.genre && item.genre.length
+            checkSelectFilter
         ) {
             acc.push(item);
         }
+
+        return acc;
         }, []);
     };
 

@@ -17,6 +17,10 @@ header {
     background: #fff;
 }
 
+header p {
+    line-height: 1!important;
+}
+
 .logo {
     grid-area: l;
 }

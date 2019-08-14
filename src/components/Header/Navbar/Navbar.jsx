@@ -14,7 +14,6 @@ const Navbar = () => {
                 <span></span>
                 <ul id="menu">
                     <Link to='/sessions' ><li>Sessions</li></Link>
-                    
                 </ul>
             </div>
         </nav>

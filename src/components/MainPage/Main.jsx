@@ -5,13 +5,19 @@ import { connect }  from 'react-redux';
 import { MovieList } from './MovieList';
 import 'antd/dist/antd.css';
 import './MainPage.css';
-import {Filter} from './Filter';
+import { Filter } from './Filter';
+import Preloader from '../Common/Preloader';
+import Fail from '../Common/Fail';
 
-export const MainPage = ({ movies, genres }) => {
+export const MainPage = ({ movies, genres, isLoading, loadingFail }) => {
 
     const [filteredMovies, setFilteredMovies] = useState([]);
-
-    return(
+    if(isLoading) {
+        return <Preloader />
+    }   else if(loadingFail) {
+        return <Fail />
+    } else {
+        return(
         <React.Fragment>
             <div className="movie-top">
                 <h1>TODAY IN CINEMA</h1>
@@ -24,13 +30,17 @@ export const MainPage = ({ movies, genres }) => {
                 }
             </div>
         </React.Fragment>
-    )
+        )
+    }
+    
 }
 
 
 const mapStateToProps = (state) => ({
     movies: state.data.movies,
-    genres: state.data.genres
+    genres: state.data.genres,
+    isLoading: state.loading.isLoading,
+    loadingFail: state.loading.loadingFail
 });
 
 export const MainPageContainer = connect(mapStateToProps)(MainPage);

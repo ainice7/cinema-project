@@ -1,7 +1,8 @@
-import { IS_LOADING, LOADING_FAIL, SET_MOVIES } from '../constance';
+import { IS_LOADING, LOADING_FAIL, SET_MOVIES, SET_SESSIONS } from '../constance';
 
 const initialState = {
-    isLoading: false
+    isLoading: false,
+    loadingFail: false
 };
 
 export const loading = (state = initialState, action ) => {
@@ -11,14 +12,18 @@ export const loading = (state = initialState, action ) => {
                 ...state,
                 isLoading: action.isLoading
             };
-        case LOADING_FAIL:
         case SET_MOVIES:
+        case SET_SESSIONS:
             return {
                 ...state,
-                isLoading: false
+                isLoading: false 
+            }
+        case LOADING_FAIL:
+            return {
+                ...state,
+                isLoading: false,
+                loadingFail: true
             };
-
-    
         default:
             return state;
     }
