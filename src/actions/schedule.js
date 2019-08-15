@@ -8,7 +8,6 @@ export const setRooms = (rooms) => ({ type: SET_ROOMS, payload: rooms });
 
 export const getSessions = () => {
     return dispatch => {
-        dispatch(isLoading(true));
         Promise.all([axios.get(URL_SESSION), axios.get(URL_ROOMS)])
         
             .then( ([sessions, rooms]) => { 

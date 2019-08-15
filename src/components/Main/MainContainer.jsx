@@ -6,6 +6,8 @@ import { getMovies } from '../../actions/index';
 import { MainPageContainer } from '../MainPage/Main';
 import { MovieContainer } from '../MoviePage/Movie'; 
 import { ScheduleContainer } from '../Schedule/Schedule';
+import Preloader from '../Common/Preloader';
+import Fail from '../Common/Fail';
 
 class Main extends React.Component {
     componentDidMount() {
@@ -13,7 +15,14 @@ class Main extends React.Component {
     }
 
     render() {
-        
+        const {isLoading, loadingFail} = this.props;
+
+        if(isLoading) {
+            return <Preloader />
+        }   else if(loadingFail) {
+            return <Fail />
+        }
+
         return (
            <div>
             <Switch>
@@ -27,10 +36,15 @@ class Main extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    isLoading: state.loading.isLoading,
+    loadingFail: state.loading.loadingFail
+})
+
 const mapDispatchToProps = {
     getMovies,
 };
 
-const MainContainer = connect(null, mapDispatchToProps)(Main);
+const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);
 
 export default MainContainer;

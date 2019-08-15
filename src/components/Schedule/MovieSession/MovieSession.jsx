@@ -9,15 +9,15 @@ export const MovieSession = ({ session }) => {
 
     const tailCut = (arr) => ((arr[arr.length-1] === "") ? arr.join(', ').slice(0, -2) : arr.join(', '));
 
-    const handleClickBuy = () => {
-        setShowModal(true);
+    const toggleShowModal = () => {
+        setShowModal(!showModal);
     }
 
     return (
         <React.Fragment>
             <div className="movie-session" >
                 <div className="movie-session-poster">
-                    <img src={session.movie.poster} />
+                    <img src={session.movie.poster} alt="movie poster" />
                 </div>
                 <div className="movie-session-info" >
                     <Link to={`movie/${session.movie._id}`}><span>{session.movie.title}</span> </Link>
@@ -32,7 +32,7 @@ export const MovieSession = ({ session }) => {
                         <span>Продолжительность: </span>
                         <span>{session.movie.long}</span>
                     </div>
-                    <div className="session-room" onClick={handleClickBuy}>
+                    <div className="session-room" onClick={toggleShowModal}>
                         <div>
                             <span>Зал: </span>
                             <span>{session.room}</span>
@@ -43,7 +43,7 @@ export const MovieSession = ({ session }) => {
                     </div>
                 </div>
             </div>
-            {showModal && <ModalBuyTicket/>}
+            {showModal && <ModalBuyTicket session={session} handleCloseModal={toggleShowModal}/>}
         </React.Fragment>
     )
 }

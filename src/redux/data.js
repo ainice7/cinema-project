@@ -47,7 +47,6 @@ export const data = (state = initialState, action) => {
 
                 return acc;
             }, []);
-            console.log("newArray", newArray);
             return {
                 ...state,
                 sessions: newArray

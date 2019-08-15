@@ -4,8 +4,6 @@ import { connect }  from 'react-redux';
 import { getSessions } from '../../actions/schedule';
 import { SessionsBlock } from './SessionsBlock';
 import { dateOptions } from '../../constance';
-import Preloader from '../Common/Preloader';
-import Fail from '../Common/Fail';
 
 class Schedule extends React.Component {
     componentDidMount() {
@@ -14,7 +12,9 @@ class Schedule extends React.Component {
 
     getSessions = () => {
         const {sessions, movies, rooms} = this.props;
-        const sessionArr = sessions.length && movies.length && rooms.length ? sessions.map(item => (
+        const sessionArr = sessions.length 
+                            && movies.length 
+                            && rooms.length ? sessions.map(item => (
             item.map(elem => ({
                 ...elem,
                 room: rooms.find(room => room._id === elem.room).name,
@@ -28,12 +28,6 @@ class Schedule extends React.Component {
     }
 
     render() {
-        const {isLoading, loadingFail} = this.props;
-        if(isLoading) {
-            return <Preloader />
-        } else if(loadingFail) {
-            return <Fail/>
-        } else {
             return(
             <div className="schedule-window">
                 {
@@ -46,16 +40,13 @@ class Schedule extends React.Component {
                 }
             </div>
         )
-        }
     }
 }
 
 const mapStateToProps = (state) => ({
     sessions: state.data.sessions,
-    isLoading: state.loading.isLoading,
     movies: state.data.movies,
-    rooms: state.data.rooms,
-    loadingFail: state.loading.loadingFail
+    rooms: state.data.rooms
 })
 
 const mapDispatchToProps = {

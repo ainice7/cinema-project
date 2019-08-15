@@ -34,7 +34,7 @@
     border-radius: 5px;
 }
 
-.movie-poster>button {
+.btn-buy {
     position: relative;
     display: block;
     width: 10vw;
@@ -54,16 +54,16 @@
     border: 3px solid #cc0000;
 }
 
-.movie-poster:hover>button {
+.movie-poster:hover>.btn-buy {
     background: #cc0000;
     box-shadow: 0px 0px 0px 20px #cc0000;
 }
 
-.movie-poster>button::before{
+.btn-buy::before{
     content: "";
     position: absolute;
     top: 33%;
-    left: -40px;
+    left: -36px;
     width: 40px;
     height: 15px;
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
@@ -71,16 +71,22 @@
     background: #f2eff2;
 }
 
-.movie-poster>button::after{
+.btn-buy::after{
     content: "";
     position: absolute;
     top: 33%;
-    right: -40px;
+    right: -36px;
     width: 40px;
     height: 15px;
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
     background: #f2eff2;
     transform: rotate(-90deg); 
+}
+
+.btn-buy.modal {
+    margin: 30px auto 0;
+    background: #cc0000;
+    box-shadow: 0px 0px 0px 20px #cc0000;
 }
 
 .about-movie {

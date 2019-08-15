@@ -6,17 +6,11 @@ import { MovieList } from './MovieList';
 import 'antd/dist/antd.css';
 import './MainPage.css';
 import { Filter } from './Filter';
-import Preloader from '../Common/Preloader';
-import Fail from '../Common/Fail';
 
-export const MainPage = ({ movies, genres, isLoading, loadingFail }) => {
+export const MainPage = ({ movies, genres }) => {
 
     const [filteredMovies, setFilteredMovies] = useState([]);
-    if(isLoading) {
-        return <Preloader />
-    }   else if(loadingFail) {
-        return <Fail />
-    } else {
+    
         return(
         <React.Fragment>
             <div className="movie-top">
@@ -31,16 +25,13 @@ export const MainPage = ({ movies, genres, isLoading, loadingFail }) => {
             </div>
         </React.Fragment>
         )
-    }
     
 }
 
 
 const mapStateToProps = (state) => ({
     movies: state.data.movies,
-    genres: state.data.genres,
-    isLoading: state.loading.isLoading,
-    loadingFail: state.loading.loadingFail
+    genres: state.data.genres
 });
 
 export const MainPageContainer = connect(mapStateToProps)(MainPage);

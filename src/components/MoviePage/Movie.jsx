@@ -12,7 +12,6 @@ class Movie extends Component {
 
     componentDidMount() {
         const { match, movies } = this.props;
-        console.log("props", this.props)
         const movieId = match.params.id;
         const movie = movies.find(el => el._id === movieId );
 
@@ -23,7 +22,6 @@ class Movie extends Component {
     tailCut = (arr) => ((arr[arr.length-1] === "") ? arr.join(', ').slice(0, -2) : arr.join(', '));
 
     render() {
-        console.log('movies done', this.state);
         const { movie } = this.state;
         if (!movie) {
             return <Fail />
@@ -32,13 +30,12 @@ class Movie extends Component {
         const country = movie.country ? this.tailCut(movie.country) : '';
         const genre = movie.genre ? this.tailCut(movie.genre) : '';
         
-        
         return <div className="movie-page">
             <h1>{movie.title}</h1>
             <div className="movie-info">
                 <div className="movie-poster" >
                     <img src={movie.poster} alt="movie-poster" />
-                    <button>Buy Tickets</button>
+                    <div className="btn-buy">Buy Tickets</div>
                 </div>
                 <div className="about-movie" >
                     <div>
@@ -70,7 +67,7 @@ class Movie extends Component {
                         <div>{actors}</div>
                     </div>
                     <div>{movie.description}</div>
-                    <div><iframe width="560" height="315" src={movie.trailer} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe></div>
+                    <div><iframe title={movie.title} width="560" height="315" src={movie.trailer} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe></div>
                 </div>
             </div>
         </div>
