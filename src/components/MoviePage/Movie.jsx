@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect }  from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import './Movie.css';
 import Fail from '../Common/Fail';
@@ -35,7 +36,7 @@ class Movie extends Component {
             <div className="movie-info">
                 <div className="movie-poster" >
                     <img src={movie.poster} alt="movie-poster" />
-                    <div className="btn-buy">Buy Tickets</div>
+                    <Link to="/sessions" className="btn-buy">Buy Tickets</Link>
                 </div>
                 <div className="about-movie" >
                     <div>
@@ -67,7 +68,14 @@ class Movie extends Component {
                         <div>{actors}</div>
                     </div>
                     <div>{movie.description}</div>
-                    <div><iframe title={movie.title} width="560" height="315" src={movie.trailer} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe></div>
+                    <div><iframe title={movie.title} 
+                                width="560" 
+                                height="315" 
+                                src={movie.trailer} 
+                                frameBorder="0" 
+                                allow="autoplay; encrypted-media" 
+                                allowFullScreen
+                        ></iframe></div>
                 </div>
             </div>
         </div>
